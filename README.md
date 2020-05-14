@@ -1,6 +1,5 @@
 # Pong
-Tommy Scheper
-tdscheper@gmail.com
+Play Pong against a friend or against the computer!
 
 This is Assignment 0 of Harvard's edX GD50 class. The instructor, Colton Ogden,
 created the code for making the two-player Pong game. I updated it by creating
