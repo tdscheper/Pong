@@ -50,9 +50,8 @@ WINDOW_HEIGHT = 720
 VIRTUAL_WIDTH = 432
 VIRTUAL_HEIGHT = 243
 
--- size of margins
+-- margin between paddles and left/right edge of screen
 HORIZONTAL_MARGIN = 10
-VERTICAL_MARGIN = 30
 
 -- size of paddle
 PADDLE_WIDTH = 5
@@ -64,13 +63,13 @@ BALL_HEIGHT = 4
 
 -- defualt paddle positions
 P1_X = HORIZONTAL_MARGIN
-P1_Y = VERTICAL_MARGIN
-P2_X = VIRTUAL_WIDTH - HORIZONTAL_MARGIN
-P2_Y = VIRTUAL_HEIGHT - VERTICAL_MARGIN
+P1_Y = VIRTUAL_HEIGHT / 2 - PADDLE_HEIGHT / 2
+P2_X = VIRTUAL_WIDTH - HORIZONTAL_MARGIN - PADDLE_WIDTH
+P2_Y = VIRTUAL_HEIGHT / 2 - PADDLE_HEIGHT / 2
 
 -- default ball position: middle of screen
-BALL_X = (VIRTUAL_WIDTH - BALL_WIDTH) / 2
-BALL_Y = (VIRTUAL_HEIGHT - BALL_HEIGHT) / 2
+BALL_X = VIRTUAL_WIDTH / 2 - BALL_WIDTH / 2
+BALL_Y = VIRTUAL_HEIGHT / 2 - BALL_HEIGHT / 2
 
 -- paddle movement speed
 PADDLE_SPEED = 200
@@ -80,15 +79,6 @@ HARD_AI_PADDLE_SPEED = 200
 
 -- ball movement speed multiplier
 DX_INCREASE = 1.03
-
--- score position
-P1_SCORE_X = VIRTUAL_WIDTH / 2 - 50
-P2_SCORE_X = VIRTUAL_WIDTH / 2 + 30
-SCORE_Y = VIRTUAL_HEIGHT / 3
-
--- FPS counter position
-FPS_X = 10
-FPS_Y = 10
 
 --[[
     Called just once at the beginning of the game; used to set up
@@ -475,8 +465,16 @@ end
 function displayScore()
     -- score display
     love.graphics.setFont(scoreFont)
-    love.graphics.print(tostring(player1Score), P1_SCORE_X, SCORE_Y)
-    love.graphics.print(tostring(player2Score), P2_SCORE_X, SCORE_Y)
+
+    score1 = tostring(player1Score)
+    score2 = tostring(player2Score)
+
+    p1_score_x = VIRTUAL_WIDTH / 3 - scoreFont:getWidth(score1) / 2
+    p2_score_y = (2 / 3) * VIRTUAL_WIDTH - scoreFont:getWidth(score2) / 2
+    score_y = VIRTUAL_HEIGHT / 3 - scoreFont:getHeight(score1) / 2
+
+    love.graphics.print(score1, p1_score_x, score_y)
+    love.graphics.print(score2, p2_score_x, score_y)
 end
 
 --[[
@@ -486,6 +484,6 @@ function displayFPS()
     -- simple FPS display across all states
     love.graphics.setFont(smallFont)
     love.graphics.setColor(0, 255, 0, 255)
-    love.graphics.print('FPS: ' .. tostring(love.timer.getFPS()), FPS_X, FPS_Y)
+    love.graphics.print('FPS: ' .. tostring(love.timer.getFPS()), 10, 10)
     love.graphics.setColor(255, 255, 255, 255)
 end
