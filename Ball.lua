@@ -52,8 +52,8 @@ end
     Places the ball in the middle of the screen, with no movement.
 ]]
 function Ball:reset()
-    self.x = (VIRTUAL_WIDTH - self.width) / 2
-    self.y = (VIRTUAL_HEIGHT - self.height) / 2
+    self.x = VIRTUAL_WIDTH / 2 - self.width / 2
+    self.y = VIRTUAL_HEIGHT / 2 - self.height / 2
     self.dx = 0
     self.dy = 0
 end
