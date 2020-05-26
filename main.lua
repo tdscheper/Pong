@@ -470,7 +470,7 @@ function displayScore()
     score2 = tostring(player2Score)
 
     p1_score_x = VIRTUAL_WIDTH / 3 - scoreFont:getWidth(score1) / 2
-    p2_score_y = (2 / 3) * VIRTUAL_WIDTH - scoreFont:getWidth(score2) / 2
+    p2_score_x = (2 / 3) * VIRTUAL_WIDTH - scoreFont:getWidth(score2) / 2
     score_y = VIRTUAL_HEIGHT / 3 - scoreFont:getHeight(score1) / 2
 
     love.graphics.print(score1, p1_score_x, score_y)
